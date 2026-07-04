@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NARKA Winter Campaign — Portfolio</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #ffffff;
+  --text: #1c1814;
+  --muted: #9a8d82;
+  --border: #e8e8e8;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', Arial, sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 200px 1fr auto;
+  align-items: start;
+  padding: 24px 32px;
+  background: transparent;
+}
+
+.nav-project { color: rgba(255,255,255,0.9); }
+.nav-project-name { font-size: 15px; font-weight: 500; letter-spacing: 0.04em; line-height: 1.5; }
+.nav-project-sub { font-size: 14px; font-weight: 300; letter-spacing: 0.04em; opacity: 0.75; }
+
+.nav-credits {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 0 48px;
+  align-items: start;
+  color: rgba(255,255,255,0.88);
+}
+
+.nav-credit-col { display: flex; flex-direction: column; gap: 4px; }
+.nav-credit-row { display: flex; gap: 10px; font-size: 13px; line-height: 1.6; }
+.nav-credit-row strong { font-weight: 500; white-space: nowrap; min-width: 90px; }
+.nav-credit-row span { font-weight: 300; opacity: 0.85; }
+
+.nav-back { font-size: 11px; letter-spacing: 0.1em; color: rgba(255,255,255,0.75); text-decoration: none; padding-top: 2px; }
+.nav-back:hover { opacity: 0.6; }
+
+/* ── HERO ── */
+.hero-section { position: relative; width: 100%; height: 100vh; overflow: hidden; }
+.hero-section img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+.hero-info { position: absolute; bottom: 28px; left: 40px; color: rgba(255,255,255,0.88); font-size: 11px; line-height: 1.9; letter-spacing: 0.08em; }
+
+/* ── IMAGE GRIDS ── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 0 40px; }
+.grid-2 img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; }
+
+.grid-1 { display: flex; justify-content: center; padding: 0 40px; }
+.grid-1 img { width: 50%; aspect-ratio: 3/4; object-fit: cover; display: block; }
+
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 40px; }
+.grid-3 img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; }
+
+/* ── TEXT SECTION ── */
+.text-section { padding: 80px 40px; }
+.text-section p { font-size: 20px; font-weight: 300; line-height: 1.85; color: var(--text); }
+
+/* ── SCOPE ── */
+.scope-section { background: #f5f5f5; }
+.scope-header { display: grid; grid-template-columns: 200px 1fr; gap: 80px; align-items: start; padding: 80px 40px 48px; }
+.section-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); padding-top: 6px; }
+.scope-subtitle { font-size: 15px; font-weight: 300; line-height: 1.85; color: var(--muted); }
+.scope-grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border); margin: 0 40px; padding-bottom: 80px; }
+.scope-item { padding: 32px 32px 32px 0; border-bottom: 1px solid var(--border); }
+.scope-item:nth-child(even) { padding-left: 40px; padding-right: 0; border-left: 1px solid var(--border); }
+.scope-item h4 { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+.scope-item p { font-size: 14px; font-weight: 300; line-height: 1.8; }
+
+/* ── OVERVIEW ── */
+.overview-section { padding: 80px 40px; border-top: 1px solid var(--border); }
+.overview-section-label { font-size: 12px; font-weight: 400; letter-spacing: 0.04em; color: var(--text); margin-bottom: 32px; }
+.overview-sub-title { font-size: 13px; font-weight: 300; letter-spacing: 0.18em; color: var(--muted); text-align: center; margin-bottom: 40px; }
+
+.issue-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--border); }
+.issue-item { border-right: 1px solid var(--border); }
+.issue-item:last-child { border-right: none; }
+.issue-header { background: #f5f5f5; padding: 14px 24px; font-size: 11px; font-weight: 500; letter-spacing: 0.03em; border-bottom: 1px solid var(--border); }
+.issue-body { padding: 28px 24px; font-size: 13px; font-weight: 300; line-height: 1.9; }
+.issue-body p + p { margin-top: 16px; }
+.issue-insight { font-weight: 500; }
+
+.overview-arrow { text-align: center; padding: 28px 0; font-size: 20px; color: var(--muted); }
+
+.solution-header { background: #7a5c3a; color: #fff; text-align: center; padding: 16px 24px; font-size: 15px; font-weight: 400; letter-spacing: 0.02em; }
+.solution-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--border); border-top: none; }
+.solution-item { padding: 32px 24px; border-right: 1px solid var(--border); font-size: 13px; font-weight: 300; line-height: 1.9; text-align: center; }
+.solution-item:last-child { border-right: none; }
+.solution-item strong { font-weight: 500; }
+
+/* ── BRAND FEATURE ── */
+.brand-feature { padding: 80px 40px; background: #f2ece0; }
+.brand-feature-header { margin-bottom: 80px; }
+.brand-feature-header .section-label-text { font-size: 12px; font-weight: 400; letter-spacing: 0.04em; margin-bottom: 16px; }
+.brand-feature-header p { font-size: 14px; font-weight: 300; line-height: 1.9; }
+
+.feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 40px; }
+.feature-item { border-top: 1px solid var(--border); padding-top: 24px; }
+.feature-num { font-size: 32px; font-weight: 100; line-height: 1; margin-bottom: 8px; }
+.feature-title-en { font-size: 28px; font-weight: 100; line-height: 1.15; margin-bottom: 28px; }
+.feature-title-ko { font-size: 14px; font-weight: 400; margin-bottom: 12px; }
+.feature-desc { font-size: 12px; font-weight: 300; line-height: 1.9; color: var(--muted); }
+
+/* ── COLLECTION ── */
+.collection-section { background: #f2ece0; padding: 80px 40px; }
+.collection-title { font-size: 15px; font-weight: 300; font-style: italic; letter-spacing: 0.06em; color: #8b6a3a; text-align: center; margin-bottom: 64px; }
+.collection-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; align-items: end; }
+.collection-item { display: flex; flex-direction: column; align-items: center; }
+.collection-img-wrap { display: flex; justify-content: center; align-items: flex-end; gap: 12px; height: 340px; margin-bottom: 20px; width: 100%; }
+.collection-img-wrap img { max-height: 100%; max-width: 100%; object-fit: contain; display: block; }
+.collection-img-duo img { max-width: 46%; }
+.collection-caption { font-size: 12px; font-weight: 400; text-align: center; letter-spacing: 0.02em; line-height: 1.6; }
+
+/* ── SPACER / FOOTER ── */
+.sp { height: 80px; }
+footer { border-top: 1px solid var(--border); padding: 32px 40px; display: flex; justify-content: space-between; align-items: center; margin-top: 80px; }
+footer span, footer a { font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+<main>
+
+<!-- HERO -->
+<div class="hero-section">
+  
+  <img src="/projects/winter/images/251024_나르카18848.jpg" alt="NARKA Winter Campaign">
+  
+  <nav>
+    <div class="nav-project">
+      <div class="nav-project-name">narka</div>
+      <div class="nav-project-sub">하입핏 하드픽스 윈터 에디션</div>
+    </div>
+    <div class="nav-credits">
+      <div class="nav-credit-col">
+        <div class="nav-credit-row"><strong>Brand</strong><span>narka</span></div>
+        <div class="nav-credit-row"><strong>Category</strong><span>Campaign Planning · Gifting Set</span></div>
+        <div class="nav-credit-row"><strong>Channel</strong><span>Olive Young</span></div>
+      </div>
+      <div class="nav-credit-col">
+        <div class="nav-credit-row"><strong>Role</strong><span>Brand Planner</span></div>
+        <div class="nav-credit-row"><strong>Scope</strong><span>Visual Direction · Package</span></div>
+        <div class="nav-credit-row"><strong>Year</strong><span>2024</span></div>
+      </div>
+    </div>
+    <a class="nav-back" href="/">← Portfolio</a>
+  </nav>
+  <div class="hero-info">
+    <p>NARKA Winter Campaign</p>
+    <p>Brand Planner · 2024</p>
+  </div>
+</div>
+
+<!-- SECTIONS -->
+
+
+
+<div class="scope-section">
+  <div class="scope-header">
+    <div class="section-label">Scope of Work</div>
+    <p class="scope-subtitle">기획 전반을 담당하였습니다.</p>
+  </div>
+  
+  <div class="scope-grid">
+    
+    <div class="scope-item">
+      <h4>기획세트 구성</h4>
+      <p>마스카라 본품과 어그 스타일 키링, 퍼 커버를 조합한 겨울 한정 기획세트 아이템 개발 및 구성 기획</p>
+    </div>
+    
+    <div class="scope-item">
+      <h4>캠페인 컨셉</h4>
+      <p>마시멜로우·스모어 카라멜 등 겨울 간식에서 영감을 받은 비주얼 컨셉 개발 및 촬영 방향 기획</p>
+    </div>
+    
+    <div class="scope-item">
+      <h4>올리브영 협업</h4>
+      <p>올리브영 단독 입점 기획세트 패키지 구성 및 판매 전략 수립</p>
+    </div>
+    
+    <div class="scope-item">
+      <h4>비주얼 디렉션</h4>
+      <p>제품 연출 촬영 기획, 모델 촬영 방향 설정, 눈배경·푸드스타일링 등 다양한 무드 연출</p>
+    </div>
+    
+  </div>
+  
+</div>
+
+
+
+
+
+<div class="overview-section">
+  <p class="overview-section-label">Project Overview</p>
+  <p class="overview-sub-title">winter limited</p>
+
+  
+  <div class="issue-grid">
+    
+    <div class="issue-item">
+      <div class="issue-header">시즈널 이슈 — 윈터 &amp; 홀리데이</div>
+      <div class="issue-body">
+        <p>홀리데이 타겟의 제품이었던 샤인에센스 이후<br>시즈널 무드 담긴 제품의 부재</p>
+        <p class="issue-insight">→ 25년 하반기 신제품 개발 없는 상황에서<br>킥이 될 수 있는 강력한 제품 필요</p>
+      </div>
+    </div>
+    
+    <div class="issue-item">
+      <div class="issue-header">비주얼 — FW시즌에 맞는 스타일 부재</div>
+      <div class="issue-body">
+        <p>① 기존 3차례 촬영의 S/S 비주얼에서<br>F/W 무드의 겨울 비주얼 부재<br>② 정전기·부스스함·스타일링이 제한적인 환경</p>
+        <p class="issue-insight">→ 겨울 시즌에 나르카만의 새로운 제안 필요</p>
+      </div>
+    </div>
+    
+    <div class="issue-item">
+      <div class="issue-header">3년간 효자상품, but 뉴니스 없음</div>
+      <div class="issue-body">
+        <p>런칭 후 2년간 베스트 제품인 하입핏 하드픽스.<br>기획세트도 수차례 나왔지만 경쟁사에 비해 부족</p>
+        <p class="issue-insight">→ 제품에서도 뉴니스가 필요한 시점</p>
+      </div>
+    </div>
+    
+  </div>
+  
+
+  
+  <div class="overview-arrow">↓</div>
+  <div class="solution-header">25 F/W 홀리데이 한정 리패키지 제안</div>
+  <div class="solution-grid">
+    
+    <div class="solution-item">윈터 / 홀리데이 무드의 리패키지 및<br>GWP 개발 제안</div>
+    
+    <div class="solution-item">메인 인플루언서 활용,<br>감각적인 겨울 비주얼 개발</div>
+    
+    <div class="solution-item">겨울에 맞는 리미티드 구성으로<br>제품 자체의 뉴니스 부여</div>
+    
+  </div>
+  
+</div>
+
+
+
+
+
+<div class="brand-feature">
+  <div class="brand-feature-header">
+    <p class="section-label-text">Brand Feature</p>
+    
+  </div>
+  
+  <div class="feature-grid">
+    
+    <div class="feature-item">
+      <div class="feature-num">1</div>
+      <div class="feature-title-en">Cozy<br>Concept</div>
+      <div class="feature-title-ko">포근한 겨울 컨셉</div>
+      <p class="feature-desc">마시멜로우·스모어 카라멜 등 따뜻한 겨울 간식에서 영감을 받아, 브랜드 시즌 무드를 감각적으로 표현하였습니다.</p>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-num">2</div>
+      <div class="feature-title-en">Seasonal<br>Gifting</div>
+      <div class="feature-title-ko">시즌 한정 기획세트</div>
+      <p class="feature-desc">마스카라 본품과 어그 스타일 키링, 퍼 커버를 구성한 겨울 한정 기획세트로, 시즌 선물 수요를 적극 공략하였습니다.</p>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-num">3</div>
+      <div class="feature-title-en">Olive Young<br>Exclusive</div>
+      <div class="feature-title-ko">올리브영 단독 입점</div>
+      <p class="feature-desc">올리브영 채널 특화 전략으로, 편집숍 고객의 선물 구매 수요와 브랜드 인지도 확산을 동시에 겨냥하였습니다.</p>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-num">4</div>
+      <div class="feature-title-en">Visual<br>Direction</div>
+      <div class="feature-title-ko">비주얼 디렉션</div>
+      <p class="feature-desc">제품 연출 촬영 컨셉 기획부터 모델 촬영 방향까지, 캠페인 전반의 비주얼을 일관되게 기획하였습니다.</p>
+    </div>
+    
+  </div>
+  
+</div>
+
+
+
+
+
+<div class="collection-section">
+  <p class="collection-title">narka hype fit winter collection</p>
+  
+  <div class="collection-grid">
+    
+    <div class="collection-item">
+      <div class="collection-img-wrap ">
+        <img src="/projects/winter/images/[윈터] 어그키링+하입핏_정면.png" alt="올리브영 — 부츠키링 기획세트">
+        
+      </div>
+      <p class="collection-caption">올리브영 — 부츠키링 기획세트</p>
+    </div>
+    
+    <div class="collection-item">
+      <div class="collection-img-wrap collection-img-duo">
+        <img src="/projects/winter/images/[윈터] 하입핏 퍼커버 용기.png" alt="그 외 채널 — 퍼 단품">
+        <img src="/projects/winter/images/[윈터] 하입핏 퍼커버 솔대.png" alt="그 외 채널 — 퍼 단품">
+      </div>
+      <p class="collection-caption">그 외 채널 — 퍼 단품</p>
+    </div>
+    
+    <div class="collection-item">
+      <div class="collection-img-wrap ">
+        <img src="/projects/winter/images/[윈터] 하입핏 리필 누끼.png" alt="GWP — 리필">
+        
+      </div>
+      <p class="collection-caption">GWP — 리필</p>
+    </div>
+    
+    <div class="collection-item">
+      <div class="collection-img-wrap collection-img-duo">
+        <img src="/projects/winter/images/[윈터] 퍼 토트백_베이지.png" alt="GWP — 퍼 토트백 베이지 / 브라운">
+        <img src="/projects/winter/images/[윈터] 퍼 토트백_브라운.png" alt="GWP — 퍼 토트백 베이지 / 브라운">
+      </div>
+      <p class="collection-caption">GWP — 퍼 토트백 베이지 / 브라운</p>
+    </div>
+    
+  </div>
+  
+</div>
+
+
+
+
+
+<div class="sp"></div>
+<div class="grid-2">
+  
+  <img src="/projects/winter/images/[메인] 마시멜로우 연출 컷.jpg" alt="">
+  
+  <img src="/projects/winter/images/[메인] 스모어카라멜 연출 컷.jpg" alt="">
+  
+</div>
+
+
+
+
+
+<div class="sp"></div>
+<div class="grid-1">
+  
+  <img src="/projects/winter/images/[메인] 어그키링 연출 컷_심도.jpg" alt="">
+  
+</div>
+
+
+
+
+
+<div class="sp"></div>
+<div class="grid-2">
+  
+  <img src="/projects/winter/images/[메인] 퍼 커버 연출 컷 copy.jpg" alt="">
+  
+  <img src="/projects/winter/images/[메인] 퍼 토트백 연출 컷.jpg" alt="">
+  
+</div>
+
+
+
+
+
+<div class="sp"></div>
+<div class="grid-3">
+  
+  <img src="/projects/winter/images/251024_나르카19320.jpg" alt="">
+  
+  <img src="/projects/winter/images/251024_나르카19491.jpg" alt="">
+  
+  <img src="/projects/winter/images/251024_나르카19904.jpg" alt="">
+  
+</div>
+
+
+
+
+
+<div class="sp"></div>
+<div class="grid-2">
+  
+  <img src="/projects/winter/images/[메인] 듀얼솔대 연출 컷.jpg" alt="">
+  
+  <img src="/projects/winter/images/[메인] 퍼커버 눈배경 연출 컷.jpg" alt="">
+  
+</div>
+
+
+
+
+<div class="sp"></div>
+
+</main>
+
+<footer>
+  <span>NARKA Winter Campaign — 2024</span>
+  <a href="/">← Portfolio</a>
+</footer>
+</body>
+</html>
