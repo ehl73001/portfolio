@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NARKA 브랜드 캠페인 — Portfolio</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #ffffff;
+  --text: #1c1814;
+  --muted: #9a8d82;
+  --border: #e8e8e8;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', Arial, sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 200px 1fr auto;
+  align-items: start;
+  padding: 24px 32px;
+  background: transparent;
+}
+
+.nav-project { color: rgba(255,255,255,0.9); }
+.nav-project-name { font-size: 15px; font-weight: 500; letter-spacing: 0.04em; line-height: 1.5; }
+.nav-project-sub { font-size: 14px; font-weight: 300; letter-spacing: 0.04em; opacity: 0.75; }
+
+.nav-credits {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 0 48px;
+  align-items: start;
+  color: rgba(255,255,255,0.88);
+}
+
+.nav-credit-col { display: flex; flex-direction: column; gap: 4px; }
+.nav-credit-row { display: flex; gap: 10px; font-size: 13px; line-height: 1.6; }
+.nav-credit-row strong { font-weight: 500; white-space: nowrap; min-width: 90px; }
+.nav-credit-row span { font-weight: 300; opacity: 0.85; }
+
+.nav-back { font-size: 11px; letter-spacing: 0.1em; color: rgba(255,255,255,0.75); text-decoration: none; padding-top: 2px; }
+.nav-back:hover { opacity: 0.6; }
+
+/* ── HERO ── */
+.hero-section { position: relative; width: 100%; height: 100vh; overflow: hidden; }
+.hero-section img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+.hero-info { position: absolute; bottom: 28px; left: 40px; color: rgba(255,255,255,0.88); font-size: 11px; line-height: 1.9; letter-spacing: 0.08em; }
+
+/* ── IMAGE GRIDS ── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 0 40px; }
+.grid-2 img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; }
+
+.grid-1 { display: flex; justify-content: center; padding: 0 40px; }
+.grid-1 img { width: 50%; aspect-ratio: 3/4; object-fit: cover; display: block; }
+
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 40px; }
+.grid-3 img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; }
+
+/* ── TEXT SECTION ── */
+.text-section { padding: 80px 40px; }
+.text-section p { font-size: 20px; font-weight: 300; line-height: 1.85; color: var(--text); }
+
+/* ── SCOPE ── */
+.scope-section { background: #f5f5f5; }
+.scope-header { display: grid; grid-template-columns: 200px 1fr; gap: 80px; align-items: start; padding: 80px 40px 48px; }
+.section-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); padding-top: 6px; }
+.scope-subtitle { font-size: 15px; font-weight: 300; line-height: 1.85; color: var(--muted); }
+.scope-grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border); margin: 0 40px; padding-bottom: 80px; }
+.scope-item { padding: 32px 32px 32px 0; border-bottom: 1px solid var(--border); }
+.scope-item:nth-child(even) { padding-left: 40px; padding-right: 0; border-left: 1px solid var(--border); }
+.scope-item h4 { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+.scope-item p { font-size: 14px; font-weight: 300; line-height: 1.8; }
+
+/* ── OVERVIEW ── */
+.overview-section { padding: 80px 40px; border-top: 1px solid var(--border); }
+.overview-section-label { font-size: 12px; font-weight: 400; letter-spacing: 0.04em; color: var(--text); margin-bottom: 32px; }
+.overview-sub-title { font-size: 13px; font-weight: 300; letter-spacing: 0.18em; color: var(--muted); text-align: center; margin-bottom: 40px; }
+
+.issue-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--border); }
+.issue-item { border-right: 1px solid var(--border); }
+.issue-item:last-child { border-right: none; }
+.issue-header { background: #f5f5f5; padding: 14px 24px; font-size: 11px; font-weight: 500; letter-spacing: 0.03em; border-bottom: 1px solid var(--border); }
+.issue-body { padding: 28px 24px; font-size: 13px; font-weight: 300; line-height: 1.9; }
+.issue-body p + p { margin-top: 16px; }
+.issue-insight { font-weight: 500; }
+
+.overview-arrow { text-align: center; padding: 28px 0; font-size: 20px; color: var(--muted); }
+
+.solution-header { background: #7a5c3a; color: #fff; text-align: center; padding: 16px 24px; font-size: 15px; font-weight: 400; letter-spacing: 0.02em; }
+.solution-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--border); border-top: none; }
+.solution-item { padding: 32px 24px; border-right: 1px solid var(--border); font-size: 13px; font-weight: 300; line-height: 1.9; text-align: center; }
+.solution-item:last-child { border-right: none; }
+.solution-item strong { font-weight: 500; }
+
+/* ── BRAND FEATURE ── */
+.brand-feature { padding: 80px 40px; background: #f2ece0; }
+.brand-feature-header { margin-bottom: 80px; }
+.brand-feature-header .section-label-text { font-size: 12px; font-weight: 400; letter-spacing: 0.04em; margin-bottom: 16px; }
+.brand-feature-header p { font-size: 14px; font-weight: 300; line-height: 1.9; }
+
+.feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 40px; }
+.feature-item { border-top: 1px solid var(--border); padding-top: 24px; }
+.feature-num { font-size: 32px; font-weight: 100; line-height: 1; margin-bottom: 8px; }
+.feature-title-en { font-size: 28px; font-weight: 100; line-height: 1.15; margin-bottom: 28px; }
+.feature-title-ko { font-size: 14px; font-weight: 400; margin-bottom: 12px; }
+.feature-desc { font-size: 12px; font-weight: 300; line-height: 1.9; color: var(--muted); }
+
+/* ── COLLECTION ── */
+.collection-section { background: #f2ece0; padding: 80px 40px; }
+.collection-title { font-size: 15px; font-weight: 300; font-style: italic; letter-spacing: 0.06em; color: #8b6a3a; text-align: center; margin-bottom: 64px; }
+.collection-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; align-items: end; }
+.collection-item { display: flex; flex-direction: column; align-items: center; }
+.collection-img-wrap { display: flex; justify-content: center; align-items: flex-end; gap: 12px; height: 340px; margin-bottom: 20px; width: 100%; }
+.collection-img-wrap img { max-height: 100%; max-width: 100%; object-fit: contain; display: block; }
+.collection-img-duo img { max-width: 46%; }
+.collection-caption { font-size: 12px; font-weight: 400; text-align: center; letter-spacing: 0.02em; line-height: 1.6; }
+
+/* ── SPACER / FOOTER ── */
+.sp { height: 80px; }
+footer { border-top: 1px solid var(--border); padding: 32px 40px; display: flex; justify-content: space-between; align-items: center; margin-top: 80px; }
+footer span, footer a { font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+<main>
+
+<!-- HERO -->
+<div class="hero-section">
+  
+  <img src="/projects/1234/images/narka 1235.jpg" alt="NARKA 브랜드 캠페인">
+  
+  <nav>
+    <div class="nav-project">
+      <div class="nav-project-name">NARKA</div>
+      <div class="nav-project-sub">일상을 재정의하는 라이프스타일 브랜드, NARKA의 첫 번째 브랜드 캠페인 기획 및 실행</div>
+    </div>
+    <div class="nav-credits">
+      <div class="nav-credit-col">
+        <div class="nav-credit-row"><strong>Brand</strong><span>NARKA</span></div>
+        <div class="nav-credit-row"><strong>Category</strong><span>라이프스타일</span></div>
+        <div class="nav-credit-row"><strong>Channel</strong><span>디지털 · SNS · 옥외광고</span></div>
+      </div>
+      <div class="nav-credit-col">
+        <div class="nav-credit-row"><strong>Role</strong><span>Brand Planner</span></div>
+        <div class="nav-credit-row"><strong>Scope</strong><span>브랜드 전략 · 캠페인 기획 · 콘텐츠 디렉팅 · 촬영 감수</span></div>
+        <div class="nav-credit-row"><strong>Year</strong><span>2026</span></div>
+      </div>
+    </div>
+    <a class="nav-back" href="/">← Portfolio</a>
+  </nav>
+  <div class="hero-info">
+    <p>NARKA 브랜드 캠페인</p>
+    <p>Brand Planner · 2026</p>
+  </div>
+</div>
+
+<!-- SECTIONS -->
+
+
+
+<div class="scope-section">
+  <div class="scope-header">
+    <div class="section-label">Scope of Work</div>
+    <p class="scope-subtitle">기획 범위</p>
+  </div>
+  
+  <div class="scope-grid">
+    
+    <div class="scope-item">
+      <h4>브랜드 전략</h4>
+      <p>브랜드 포지셔닝 설정부터 핵심 메시지 개발까지, NARKA만의 고유한 브랜드 언어를 정의했습니다.</p>
+    </div>
+    
+    <div class="scope-item">
+      <h4>캠페인 기획</h4>
+      <p>시즌 테마 도출 및 캠페인 컨셉 수립, 채널별 실행 계획을 총괄 기획했습니다.</p>
+    </div>
+    
+    <div class="scope-item">
+      <h4>콘텐츠 디렉팅</h4>
+      <p>비주얼 아이덴티티에 기반한 촬영 콘셉트 방향 설정과 크리에이티브 가이드를 제작했습니다.</p>
+    </div>
+    
+    <div class="scope-item">
+      <h4>채널 운영 전략</h4>
+      <p>SNS, 디지털 광고, 옥외 매체 등 멀티채널 통합 운영 전략을 수립하고 실행 지표를 관리했습니다.</p>
+    </div>
+    
+  </div>
+  
+</div>
+
+
+
+
+
+<div class="overview-section">
+  <p class="overview-section-label">Project Overview</p>
+  <p class="overview-sub-title">캠페인 배경</p>
+
+  
+  <div class="issue-grid">
+    
+    <div class="issue-item">
+      <div class="issue-header">브랜드 인지도 부재</div>
+      <div class="issue-body">
+        <p>신생 라이프스타일 브랜드로서 타깃 소비자 내 브랜드 인지도가 거의 없는 상태였으며, 유사 카테고리 내 차별화 포인트 전달이 시급했습니다.</p>
+        <p class="issue-insight">"알려지지 않은 것"을 약점이 아닌, 새로움의 신호로 전환하는 브랜딩 전략이 필요했습니다.</p>
+      </div>
+    </div>
+    
+    <div class="issue-item">
+      <div class="issue-header">감성 언어의 공백</div>
+      <div class="issue-body">
+        <p>제품 스펙 중심의 커뮤니케이션에서 벗어나 소비자의 라이프스타일과 감정적으로 연결되는 브랜드 언어가 부재했습니다.</p>
+        <p class="issue-insight">구매 동기의 핵심은 기능이 아닌 '이 브랜드가 나를 어떻게 표현하는가'라는 자기표현 욕구에 있음을 확인했습니다.</p>
+      </div>
+    </div>
+    
+    <div class="issue-item">
+      <div class="issue-header">파편화된 채널 경험</div>
+      <div class="issue-body">
+        <p>SNS, 온라인몰, 오프라인 접점에서 일관된 브랜드 경험이 제공되지 않아 소비자 인식이 분산되고 브랜드 통일성이 낮았습니다.</p>
+        <p class="issue-insight">채널 간 톤앤매너와 비주얼 언어의 통일만으로도 브랜드 신뢰도를 빠르게 끌어올릴 수 있다는 점을 파악했습니다.</p>
+      </div>
+    </div>
+    
+  </div>
+  
+
+  
+  <div class="overview-arrow">↓</div>
+  <div class="solution-header">NARKA만의 세계관으로 브랜드 첫인상을 설계하다</div>
+  <div class="solution-grid">
+    
+    <div class="solution-item">"나답게 사는 방식" 이라는 브랜드 코어 메시지 개발 및 캠페인 전반 적용</div>
+    
+    <div class="solution-item">자연광 기반의 일상 감성 비주얼로 진정성 있는 브랜드 세계관 구축</div>
+    
+    <div class="solution-item">SNS · 디지털 · 옥외광고 통합 운영으로 일관된 브랜드 경험 제공</div>
+    
+    <div class="solution-item">인플루언서 콜라보 및 UGC 캠페인 연계로 소비자 자발적 확산 유도</div>
+    
+  </div>
+  
+</div>
+
+
+
+
+
+<div class="brand-feature">
+  <div class="brand-feature-header">
+    <p class="section-label-text">Brand Feature</p>
+    
+  </div>
+  
+  <div class="feature-grid">
+    
+    <div class="feature-item">
+      <div class="feature-num">1</div>
+      <div class="feature-title-en">Authentic Lifestyle</div>
+      <div class="feature-title-ko">진정성 있는 일상</div>
+      <p class="feature-desc">연출된 완벽함보다 꾸밈없는 일상의 순간들을 담아 소비자가 공감할 수 있는 브랜드 세계관을 구성했습니다.</p>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-num">2</div>
+      <div class="feature-title-en">Minimal Aesthetic</div>
+      <div class="feature-title-ko">미니멀 미학</div>
+      <p class="feature-desc">과하지 않은 절제된 비주얼 언어로 제품과 라이프스타일이 자연스럽게 어우러지는 화면을 구현했습니다.</p>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-num">3</div>
+      <div class="feature-title-en">Consistent Identity</div>
+      <div class="feature-title-ko">일관된 정체성</div>
+      <p class="feature-desc">컬러 팔레트, 촬영 톤, 폰트 시스템을 통합하여 모든 접점에서 NARKA다움이 느껴지도록 기준을 설계했습니다.</p>
+    </div>
+    
+    <div class="feature-item">
+      <div class="feature-num">4</div>
+      <div class="feature-title-en">Human-Centered</div>
+      <div class="feature-title-ko">사람 중심의 서사</div>
+      <p class="feature-desc">제품이 아닌 사람의 이야기를 중심에 두어 소비자가 자신의 이야기로 치환할 수 있는 감정적 여지를 남겼습니다.</p>
+    </div>
+    
+  </div>
+  
+</div>
+
+
+
+
+
+<div class="sp"></div>
+<div class="grid-2">
+  
+  <img src="/projects/1234/images/narka 0016_배경연장.jpg" alt="">
+  
+  <img src="/projects/1234/images/narka 0087.jpg" alt="">
+  
+</div>
+
+
+
+
+
+<div class="sp"></div>
+<div class="grid-2">
+  
+  <img src="/projects/1234/images/narka 0261.jpg" alt="">
+  
+  <img src="/projects/1234/images/narka 0321.jpg" alt="">
+  
+</div>
+
+
+
+
+
+<div class="sp"></div>
+<div class="grid-1">
+  
+  <img src="/projects/1234/images/narka 0495.jpg" alt="">
+  
+</div>
+
+
+
+
+
+<div class="sp"></div>
+<div class="grid-2">
+  
+  <img src="/projects/1234/images/narka 0649.jpg" alt="">
+  
+  <img src="/projects/1234/images/narka 0690.jpg" alt="">
+  
+</div>
+
+
+
+
+
+<div class="sp"></div>
+<div class="grid-3">
+  
+  <img src="/projects/1234/images/narka 0932.jpg" alt="">
+  
+  <img src="/projects/1234/images/narka 1166.jpg" alt="">
+  
+  <img src="/projects/1234/images/narka 1235.jpg" alt="">
+  
+</div>
+
+
+
+
+
+<div class="sp"></div>
+<div class="grid-2">
+  
+  <img src="/projects/1234/images/narka 1362.jpg" alt="">
+  
+  <img src="/projects/1234/images/narka 1499_배경연장.jpg" alt="">
+  
+</div>
+
+
+
+
+
+<div class="sp"></div>
+<div class="grid-2">
+  
+  <img src="/projects/1234/images/narka 1712.jpg" alt="">
+  
+  <img src="/projects/1234/images/narka 1784.jpg" alt="">
+  
+</div>
+
+
+
+
+<div class="sp"></div>
+
+</main>
+
+<footer>
+  <span>NARKA 브랜드 캠페인 — 2026</span>
+  <a href="/">← Portfolio</a>
+</footer>
+</body>
+</html>
